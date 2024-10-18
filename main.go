@@ -1,8 +1,16 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+
+	"github.com/AbdelazizTina-dev/go-credit-card-validator/handlers"
+)
 
 func main() {
 	http.HandleFunc("/validate", handlers.ValidateHandler)
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe("127.0.0.1:8080", nil)
+	if err != nil {
+		log.Fatalf("Server failed to start: %v", err)
+	}
 }
